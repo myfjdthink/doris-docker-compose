@@ -25,20 +25,20 @@ default user is  root
 password is empty
 
 
-check be config, is empty 
+check backends config, is empty 
 ```sql
 SHOW PROC '/backends';
 ```
 
 
-config be
+config backends
 ```sql
 ALTER SYSTEM ADD BACKEND "doris-docker-compose_doris-be_1:9050";
 ALTER SYSTEM ADD BACKEND "doris-docker-compose_doris-be_2:9050";
 ALTER SYSTEM ADD BACKEND "doris-docker-compose_doris-be_3:9050";
 ```
 
-check be config again, be Alive is ture
+check backends config again, backends Alive value should be ture
 ```sql
 SHOW PROC '/backends';
 ```
@@ -60,7 +60,7 @@ select * from testdb.test_table;
 ```
 
 ## restart
-因为 doris 使用文件存储 be 的 ip 信息， docker-compose restart 后，可能会导致 be ip 发生变化，导致 fe 启动失败。
+因为 doris 使用文件存储 backends 的 ip 信息， docker-compose restart 后，可能会导致 backends ip 发生变化，导致 fe 启动失败。
 可以清除 volume 数据，再重启即可
 
 clear volume
